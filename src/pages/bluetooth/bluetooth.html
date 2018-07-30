@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bluetooth</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-input placeholder="MAC Address" [value]="macAddress"></ion-input>
+  <button ion-button full (click)="bluetoothWrite()">Bluetooth test</button>
+</ion-content>
