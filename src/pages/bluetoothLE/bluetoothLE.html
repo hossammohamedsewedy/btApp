@@ -5,21 +5,21 @@
 </ion-header>
 
 <ion-content padding>
-  platformStatus
+  platformStatus <br>
   {{platformStatus}}
   <br><hr><br>
 
-  bluetoothLEStatus
+  bluetoothLEStatus <br>
   {{bluetoothLEStatus}}
   <br><hr><br>
 
-  BluetoothLE Toggle
+  BluetoothLE Toggle <br>
   <button ion-button full (click)="toggleBluetoothLE(true)">Open BluetoothLE</button>
   <button ion-button full (click)="toggleBluetoothLE(false)">Close BluetoothLE</button>
   <br><hr><br>
   
   <button ion-button full (click)="scanDevices()">Scan Devices</button>
-  scannedDevices
+  scannedDevices <br>
   {{scannedDevices}}
   <br><hr><br>
 </ion-content>
