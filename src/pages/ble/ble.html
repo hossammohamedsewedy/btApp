@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>BLE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button full (click)="bleEnable()">Open BLE</button>
+  <button ion-button full (click)="scanDevices()">Scan Devices</button>
+  scannedDevices
+  {{scannedDevices}}
+  <br><hr><br>
+</ion-content>

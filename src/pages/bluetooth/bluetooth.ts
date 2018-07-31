@@ -11,6 +11,12 @@ export class BluetoothPage {
 
   macAddress: string = "B4-6D-83-76-B9-BF";
 
+  readData: string = "";
+
+  devices: string = "";
+
+  anyData: string = "";
+
   constructor(public navCtrl: NavController, private bluetoothSerial: BluetoothSerial,
     private alertCtrl: AlertController) {
 
@@ -23,10 +29,17 @@ export class BluetoothPage {
       // buttons: ['Dismiss']
       buttons: [
         {
-          text: 'Dismiss',
-          role: 'cancel',
+          text: 'Next',
+          role: 'ok',
           handler: () => {
             this.bluetoothOperation(operationNumber);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            // this.bluetoothOperation(operationNumber);
           }
         },
       ]
@@ -41,15 +54,65 @@ export class BluetoothPage {
       // buttons: ['Dismiss']
       buttons: [
         {
-          text: 'Dismiss',
-          role: 'cancel',
+          text: 'Next',
+          role: 'ok',
           handler: () => {
             this.bluetoothOperation(operationNumber);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            // this.bluetoothOperation(operationNumber);
           }
         },
       ]
     });
     alert.present();
+  }
+
+  openBluetooth(){
+    // if (!this.bluetoothSerial.isEnabled()) 
+    {
+      this.bluetoothSerial.enable();
+    }
+  }
+
+  setBluetoothDiscoverable(){
+    if (this.bluetoothSerial.isEnabled()){
+      this.bluetoothSerial.setDiscoverable(60*3);
+    }
+  }
+
+  read(){
+    if (this.bluetoothSerial.isEnabled() && this.bluetoothSerial.isConnected()) {
+      this.readData = JSON.stringify(this.bluetoothSerial.read());
+    }
+  }
+
+  getUnpairedDevices(){
+    if (this.bluetoothSerial.isEnabled() && this.bluetoothSerial.isConnected()) {
+      this.devices = JSON.stringify(this.bluetoothSerial.discoverUnpaired());
+    }
+  }
+
+  connectTest(){
+    if (this.bluetoothSerial.isEnabled()) {
+      this.bluetoothSerial.connect(this.macAddress).subscribe(bt => this.anyData = JSON.stringify(bt));
+    }
+  }
+
+  connectInsecureTest(){
+    if (this.bluetoothSerial.isEnabled()) {
+      this.bluetoothSerial.connectInsecure(this.macAddress).subscribe(bt => this.anyData = JSON.stringify(bt));
+    }
+  }
+
+  list(){
+    if (this.bluetoothSerial.isEnabled() && this.bluetoothSerial.isConnected()) {
+      this.anyData = JSON.stringify(this.bluetoothSerial.list());
+    }
   }
 
   bluetoothOperation(opNumber: number) {
@@ -59,16 +122,22 @@ export class BluetoothPage {
     data[2] = 0x43;
     data[3] = 0x44;
 
-    if (this.bluetoothSerial.isEnabled) {
+    this.devices = JSON.stringify(this.bluetoothSerial.discoverUnpaired());
+    console.log(this.devices);
+
+    if (this.bluetoothSerial.isEnabled()) {
       let mac: string = "B4-6D-83-76-B9-BF";
       if (this.macAddress != null && this.macAddress.length > 0) {
         mac = this.macAddress;
       }
 
-      this.bluetoothSerial.connect(mac);
-      // this.bluetoothSerial.connectInsecure(mac);
+      this.connectTest();
+      // this.connectInsecureTest();
 
-      if (this.bluetoothSerial.isConnected) {
+      if (this.bluetoothSerial.isConnected()) {
+
+        this.readData = JSON.stringify(this.bluetoothSerial.read());
+
         switch (opNumber) {
           case 1:
             // Write a string
@@ -115,7 +184,7 @@ export class BluetoothPage {
   }
 
   bluetoothWrite() {
-    if (!this.bluetoothSerial.isEnabled) {
+    if (!this.bluetoothSerial.isEnabled()) {
       this.bluetoothSerial.enable();
     }
 

@@ -8,4 +8,36 @@
   <ion-label color="primary">MAC Address</ion-label>
   <ion-input placeholder="MAC Address" [value]="macAddress"></ion-input>
   <button ion-button full (click)="bluetoothWrite()">Bluetooth test</button>
+
+  <button ion-button full (click)="openBluetooth()">Open Bluetooth</button>
+
+  <button ion-button full (click)="setBluetoothDiscoverable()">Set Bluetooth Discoverable</button>
+
+  <button ion-button full (click)="getUnpairedDevices()">Unpaired Devices</button>
+
+  <button ion-button full (click)="read()">Read</button>
+
+  <button ion-button full (click)="connectTest()">Test Connection</button>
+
+  <button ion-button full (click)="connectInsecureTest()">Test Insecured Connection</button>
+
+  <button ion-button full (click)="list()">List</button>
+
+  <br><br>
+  <hr>
+  anyData
+
+  {{anyData}}
+
+  <br><br>
+  <hr>
+  devices
+
+  {{devices}}
+
+  <br><br>
+  <hr>
+  readData
+  
+  {{readData}}
 </ion-content>

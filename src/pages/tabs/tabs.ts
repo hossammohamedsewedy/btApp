@@ -6,6 +6,10 @@ import { HomePage } from '../home/home';
 
 import { BluetoothPage } from "../bluetooth/bluetooth";
 
+import { BLEComponent } from "../ble/ble";
+
+import { BluetoothLEPage } from "../bluetoothLE/bluetoothLE";
+
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -15,6 +19,8 @@ export class TabsPage {
   // tab2Root = AboutPage;
   // tab3Root = ContactPage;
   tab4Root = BluetoothPage;
+  tab5Root = BLEComponent;
+  tab6Root = BluetoothLEPage;
 
   constructor() {
 

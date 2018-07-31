@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>BluetoothLE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  platformStatus
+  {{platformStatus}}
+  <br><hr><br>
+
+  bluetoothLEStatus
+  {{bluetoothLEStatus}}
+  <br><hr><br>
+
+  BluetoothLE Toggle
+  <button ion-button full (click)="toggleBluetoothLE(true)">Open BluetoothLE</button>
+  <button ion-button full (click)="toggleBluetoothLE(false)">Close BluetoothLE</button>
+  <br><hr><br>
+  
+  <button ion-button full (click)="scanDevices()">Scan Devices</button>
+  scannedDevices
+  {{scannedDevices}}
+  <br><hr><br>
+</ion-content>

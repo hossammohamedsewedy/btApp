@@ -10,10 +10,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { BluetoothPage } from "../pages/bluetooth/bluetooth";
 
+import { BLEComponent } from "../pages/ble/ble";
+
+import { BluetoothLEPage } from "../pages/bluetoothLE/bluetoothLE";
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
+
+import { BLE } from "@ionic-native/ble";
+
+import { BluetoothLE } from '@ionic-native/bluetooth-le';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,9 @@ import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
     ContactPage,
     HomePage,
     TabsPage,
-    BluetoothPage
+    BluetoothPage,
+    BLEComponent,
+    BluetoothLEPage
   ],
   imports: [
     BrowserModule,
@@ -35,13 +45,17 @@ import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
     ContactPage,
     HomePage,
     TabsPage,
-    BluetoothPage
+    BluetoothPage,
+    BLEComponent,
+    BluetoothLEPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BluetoothSerial
+    BluetoothSerial,
+    BLE,
+    BluetoothLE
   ]
 })
 export class AppModule {}
